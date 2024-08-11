@@ -11,6 +11,7 @@ public extension Font {
     static let body1 = Font.custom(NunitoSans.regular.rawValue, size: 16)
     static let body2 = Font.custom(NunitoSans.regular.rawValue, size: 18)
     static let body3 = Font.custom(NunitoSans.regular.rawValue, size: 14)
+    static let body4 = Font.custom(NunitoSans.regular.rawValue, size: 12)
     
     static let button1 = Font.custom(NunitoSans.semiBold.rawValue, size: 18)
     static let button2 = Font.custom(NunitoSans.semiBold.rawValue, size: 16)
