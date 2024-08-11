@@ -8,9 +8,14 @@ let package = Package(
     products: [
         .library(
             name: "Core",
-            targets: ["Domain"]),
+            targets: [
+                "Domain",
+                "Architecture"
+            ]
+        ),
     ],
     targets: [
-        .target(name: "Domain")
+        .target(name: "Domain"),
+        .target(name: "Architecture")
     ]
 )
