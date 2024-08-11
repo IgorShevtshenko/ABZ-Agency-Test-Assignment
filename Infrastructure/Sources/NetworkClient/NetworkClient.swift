@@ -49,12 +49,13 @@ public extension NetworkClient {
     
     func post(
         _ requestBody: some Encodable,
-        path: String
+        path: String,
+        queryItems: [URLQueryItem]
     ) -> Completable<Error> {
         execute(
             method: .post,
             path: path,
-            queryItems: [],
+            queryItems: queryItems,
             body: requestBody,
             responseType: EmptyResponseEntity.self
         )

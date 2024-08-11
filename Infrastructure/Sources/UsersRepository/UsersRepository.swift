@@ -3,7 +3,6 @@ import Utils
 import Domain
 
 public enum UsersRepositoryError: Error {
-    case other(Error)
     case noInternetConnection
     case general
 }

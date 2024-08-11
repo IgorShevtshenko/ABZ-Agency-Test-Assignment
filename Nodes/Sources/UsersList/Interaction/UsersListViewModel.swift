@@ -68,7 +68,7 @@ public final class UsersListViewModel: ViewModel<UsersListState, UsersListAction
                     case .noInternetConection:
                         return Just(UsersListEvent.didReceiveNoConnectionError)
                             .eraseToAnyPublisher()
-                    case .general, .other:
+                    case .general:
                         return Empty().eraseToAnyPublisher()
                     }
                 }
@@ -85,7 +85,7 @@ public final class UsersListViewModel: ViewModel<UsersListState, UsersListAction
                 case .noInternetConection:
                     return Just(UsersListEvent.didReceiveNoConnectionError)
                         .eraseToAnyPublisher()
-                case .general, .other:
+                case .general:
                     return Empty().eraseToAnyPublisher()
                 }
             }

@@ -2,7 +2,6 @@ import Utils
 import Domain
 
 public enum GetUsersError: Error {
-    case other(Error)
     case general
     case noInternetConection
 }

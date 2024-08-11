@@ -8,10 +8,18 @@ let package = Package(
     products: [
         .library(
             name: "UseCases",
-            targets: ["GetUsers"]),
+            targets: [
+                "GetUsers",
+                "SignUp",
+            ]
+        ),
         .library(
             name: "UseCasesImpl",
-            targets: ["GetUsersImpl"]),
+            targets: [
+                "GetUsersImpl",
+                "SignUpImpl"
+            ]
+        ),
     ],
     dependencies: [
         .package(path: "../Utils"),
@@ -31,6 +39,23 @@ let package = Package(
             name: "GetUsersImpl",
             dependencies: [
                 "GetUsers",
+                .product(name: "Infrastructure", package: "Infrastructure"),
+                .product(name: "Utils", package: "Utils"),
+                .product(name: "Core", package: "Core"),
+            ]
+        ),
+        .target(
+            name: "SignUp",
+            dependencies: [
+                .product(name: "Infrastructure", package: "Infrastructure"),
+                .product(name: "Utils", package: "Utils"),
+                .product(name: "Core", package: "Core"),
+            ]
+        ),
+        .target(
+            name: "SignUpImpl",
+            dependencies: [
+                "SignUp",
                 .product(name: "Infrastructure", package: "Infrastructure"),
                 .product(name: "Utils", package: "Utils"),
                 .product(name: "Core", package: "Core"),

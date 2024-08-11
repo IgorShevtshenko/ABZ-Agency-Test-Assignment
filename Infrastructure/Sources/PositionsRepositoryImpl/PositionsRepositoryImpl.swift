@@ -6,11 +6,11 @@ import Combine
 
 public struct PositionsRepositoryImpl: PositionsRepository {
     
-    public var positions: ProtectedPublisher<[Positon]> {
+    public var positions: ProtectedPublisher<[Position]> {
         _positions.eraseToAnyPublisher()
     }
     
-    private let _positions = CurrentValueSubject<[Positon], Never>([])
+    private let _positions = CurrentValueSubject<[Position], Never>([])
     
     private let client: NetworkClient
 
@@ -21,7 +21,7 @@ public struct PositionsRepositoryImpl: PositionsRepository {
     public func fetchPositions() -> Completable<PositionsRepositoryError> {
         client.get(PositionsResponse.self, path: "positions")
             .map(\.positions)
-            .map { $0.map(Positon.init) }
+            .map { $0.map(Position.init) }
             .mapError(\.asPositionsRepositoryError)
             .handleEvents(receiveOutput: { [_positions] positions in
                 _positions.send(positions)
@@ -40,23 +40,22 @@ private struct PositionEntity: Decodable {
     let name: String
 }
 
-private extension Positon {
+private extension Position {
     
     init(from entity: PositionEntity) {
-        self = Positon(id: entity.id, name: entity.name)
+        self = Position(id: entity.id, name: entity.name)
     }
 }
 
-extension Error {
+private extension Error {
     
     var asPositionsRepositoryError: PositionsRepositoryError {
         switch self as? NetworkClientError {
-        case .externalError(let error):
-                .other(error)
         case .noInternetConnection:
                 .noInternetConnection
         case .failedToGenerateURL,
                 .invalidStatusCode,
+                .externalError,
                 .none:
                 .general
         }

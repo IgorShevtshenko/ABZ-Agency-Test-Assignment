@@ -42,8 +42,6 @@ private extension UsersRepositoryError {
     
     var asGetUsersError: GetUsersError {
         switch self {
-        case .other(let error):
-                .other(error)
         case .general:
                 .general
         case .noInternetConnection:

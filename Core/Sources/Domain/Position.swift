@@ -1,4 +1,4 @@
-public struct Positon {
+public struct Position {
     
     public let id: Int
     public let name: String

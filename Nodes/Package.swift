@@ -8,7 +8,11 @@ let package = Package(
     products: [
         .library(
             name: "Nodes",
-            targets: ["UsersList"]),
+            targets: [
+                "UsersList",
+                "SignUpNewUser",
+            ]
+        ),
     ],
     dependencies: [
         .package(path: "../Core"),
@@ -20,6 +24,16 @@ let package = Package(
     targets: [
         .target(
             name: "UsersList",
+            dependencies: [
+                .product(name: "Core", package: "Core"),
+                .product(name: "UseCases", package: "UseCases"),
+                .product(name: "Infrastructure", package: "Infrastructure"),
+                .product(name: "UILibrary", package: "UILibrary"),
+                .product(name: "Utils", package: "Utils")
+            ]
+        ),
+        .target(
+            name: "SignUpNewUser",
             dependencies: [
                 .product(name: "Core", package: "Core"),
                 .product(name: "UseCases", package: "UseCases"),
