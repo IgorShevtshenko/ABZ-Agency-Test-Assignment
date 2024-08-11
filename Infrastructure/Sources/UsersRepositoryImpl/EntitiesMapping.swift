@@ -26,10 +26,3 @@ private extension User {
         )
     }
 }
-
-private extension Positon {
-    
-    init(from int: Int) {
-        self = .backendDeveloper
-    }
-}
