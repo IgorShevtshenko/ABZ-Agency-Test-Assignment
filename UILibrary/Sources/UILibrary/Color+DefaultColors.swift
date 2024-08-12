@@ -12,5 +12,4 @@ public extension Color {
     static let progressViewColor = Color(UIColor.hex("#3C3C43")).opacity(0.6)
     static let negative = Color(UIColor.hex("#CB3D40"))
     static let inactiveTextField = Color(UIColor.hex("#D0CFCF"))
-    static let subtext = Color(UIColor.hex("#49454F"))
 }

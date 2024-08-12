@@ -25,12 +25,13 @@ struct TextFieldPlaceholderModifier: ViewModifier {
                         .foregroundColor(foregroundColor)
                         .lineLimit(1)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.vertical, isActivePlaceholder ? 6 : 0)
+                        .padding(.vertical, isActivePlaceholder ? 8 : 0)
                     
                     if isActivePlaceholder {
                         Spacer()
                     }
                 }
+                .allowsHitTesting(false)
             }
     }
 }

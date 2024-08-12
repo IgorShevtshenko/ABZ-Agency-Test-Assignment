@@ -36,7 +36,7 @@ public struct PrimaryTextField: View {
                     TextFieldConfigurationViewModifier(keyboardConfiguration: keyboardConfiguration)
                 )
                 .padding(.top, isPlaceholderActive ? 22 : 16)
-                .padding(.bottom, isPlaceholderActive ? 6 : 16)
+                .padding(.bottom, isPlaceholderActive ? 8 : 16)
                 .modifier(
                     TextFieldPlaceholderModifier(
                         placeholder: textFieldConfiguration.placeholder,
@@ -53,13 +53,14 @@ public struct PrimaryTextField: View {
             if let subtext = textFieldConfiguration.subtext {
                 Text(subtext)
                     .font(.body4)
-                    .foregroundStyle(!isErrorActive ? Color.subtext : .negative)
+                    .foregroundStyle(!isErrorActive ? Color.secondaryLabel : .negative)
                     .padding(.horizontal, 16)
             }
         }
         .onReceive(textFieldValidation.onValidationUpdate) { _ in
             textFieldConfiguration.validateInput(text)
         }
+        .animation(.default, value: isPlaceholderActive)
     }
     
     public func updatePlaceholder(_ placeholder: String) -> Self {
@@ -68,7 +69,7 @@ public struct PrimaryTextField: View {
         }
     }
     
-    public func updateSubtext(_ text: String) -> Self {
+    public func updateSubtext(_ text: String?) -> Self {
         updateView { view in
             view.textFieldConfiguration.subtext = text
         }
