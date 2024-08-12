@@ -11,13 +11,15 @@ let package = Package(
             targets: [
                 "GetUsers",
                 "SignUp",
+                "SignUpFormValidator",
             ]
         ),
         .library(
             name: "UseCasesImpl",
             targets: [
                 "GetUsersImpl",
-                "SignUpImpl"
+                "SignUpImpl",
+                "SignUpFormValidatorImpl"
             ]
         ),
     ],
@@ -59,6 +61,14 @@ let package = Package(
                 .product(name: "Infrastructure", package: "Infrastructure"),
                 .product(name: "Utils", package: "Utils"),
                 .product(name: "Core", package: "Core"),
+            ]
+        ),
+        .target(name: "SignUpFormValidator"),
+        .target(
+            name: "SignUpFormValidatorImpl",
+            dependencies: [
+                "SignUpFormValidator",
+                .product(name: "Infrastructure", package: "Infrastructure"),
             ]
         ),
     ]

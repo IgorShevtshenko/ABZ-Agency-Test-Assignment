@@ -1,15 +1,28 @@
 import Domain
 import Foundation
 
-public enum SignUpNewUserFormField {
+public enum SignUpNewUserFormField: CaseIterable {
     case name
-    case phone
     case email
-    case photo
+    case phone
+}
+
+public enum SignUpresult {
+    case success
+    case userAlreadyRegistered
+    case noInternetConnection
 }
 
 public struct SignUpNewUserState {
     var form = SignUpNewUserForm()
+    var signupResult: SignUpresult?
+    
+    var fieldErrors = [SignUpNewUserFormField: String]()
+    var editingInputs = [SignUpNewUserFormField: Bool]()
+    
+    var positions = [Position]()
+    
+    var isNoInternetConnection = false
 }
 
 public struct SignUpNewUserForm {

@@ -1,16 +1,16 @@
 import Foundation
 import NetworkClient
 
-internal class MultipartFormDataEncoderImpl: MultipartFormDataEncoder {
+public class MultipartFormDataEncoderImpl: MultipartFormDataEncoder {
 
     private let encoder = JSONEncoder()
     private let boundary = "Boundary"
 
-    init() {
+    public init() {
         encoder.dataEncodingStrategy = .deferredToData
     }
 
-    func encode(_ value: some Encodable) throws -> Data {
+    public func encode(_ value: some Encodable) throws -> Data {
         let data = try encoder.encode(value)
         let dict = try JSONSerialization.jsonObject(with: data, options: [])
 

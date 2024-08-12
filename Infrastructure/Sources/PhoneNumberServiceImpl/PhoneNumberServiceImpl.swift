@@ -17,4 +17,8 @@ public final class PhoneNumberServiceImpl: PhoneNumberService {
         }
         return nil
     }
+    
+    public func isValid(_ phone: String) -> Bool {
+        phoneNumberKit.isValidPhoneNumber(phone)
+    }
 }

@@ -3,7 +3,7 @@ import Domain
 
 public enum GetUsersError: Error {
     case general
-    case noInternetConection
+    case noInternetConnection
 }
 
 public protocol GetUsers {

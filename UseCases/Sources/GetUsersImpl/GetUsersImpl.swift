@@ -45,7 +45,7 @@ private extension UsersRepositoryError {
         case .general:
                 .general
         case .noInternetConnection:
-                .noInternetConection
+                .noInternetConnection
         }
     }
 }
