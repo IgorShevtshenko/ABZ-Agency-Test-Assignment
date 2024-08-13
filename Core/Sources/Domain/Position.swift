@@ -1,4 +1,4 @@
-public struct Position {
+public struct Position: Identifiable, Equatable {
     
     public let id: Int
     public let name: String
