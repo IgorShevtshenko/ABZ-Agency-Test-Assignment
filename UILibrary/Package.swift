@@ -10,9 +10,15 @@ let package = Package(
             name: "UILibrary",
             targets: ["UILibrary"]),
     ],
+    dependencies: [
+        .package(path: "../Utils")
+    ],
     targets: [
         .target(
             name: "UILibrary",
+            dependencies: [
+                .product(name: "Utils", package: "Utils"),
+            ],
             resources: [
                 .copy("Fonts/NunitoSans-Regular.ttf"),
                 .copy("Fonts/NunitoSans-SemiBold.ttf"),

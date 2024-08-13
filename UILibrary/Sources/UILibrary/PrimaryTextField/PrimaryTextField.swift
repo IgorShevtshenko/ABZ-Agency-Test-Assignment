@@ -1,4 +1,5 @@
 import SwiftUI
+import Utils
 
 struct KeyboardConfiguration {
     var contentType: UITextContentType?
@@ -30,7 +31,7 @@ public struct PrimaryTextField: View {
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            TextField("", text: $text)
+            TextField("", text: $text.removeDuplicates())
                 .focused($isFocused)
                 .modifier(
                     TextFieldConfigurationViewModifier(keyboardConfiguration: keyboardConfiguration)
@@ -48,13 +49,21 @@ public struct PrimaryTextField: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
-                        .stroke(color, lineWidth: isFocused ? 2 : 1)
+                        .stroke(color, lineWidth: isFocused && !isErrorActive ? 2 : 1)
                 )
             if let subtext = textFieldConfiguration.subtext {
                 Text(subtext)
                     .font(.body4)
                     .foregroundStyle(!isErrorActive ? Color.secondaryLabel : .negative)
                     .padding(.horizontal, 16)
+            }
+        }
+        .onChange(of: text) { _, _ in
+            textFieldValidation.inputChange()
+        }
+        .onChange(of: isFocused) { _, isFocused in
+            if !isFocused {
+                textFieldValidation.resignTextField()
             }
         }
         .onReceive(textFieldValidation.onValidationUpdate) { _ in
