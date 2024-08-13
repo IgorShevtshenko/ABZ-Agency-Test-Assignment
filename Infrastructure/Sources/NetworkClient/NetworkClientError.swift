@@ -1,6 +1,6 @@
 public enum NetworkClientError: Error {
     case failedToGenerateURL(String)
-    case externalError(Error)
+    case externalError(Int)
     case noInternetConnection
     case invalidStatusCode(Int)
 }

@@ -13,6 +13,7 @@ let package = Package(
                 "NetworkClient",
                 "PhoneNumberService",
                 "PositionsRepository",
+                "AuthenticationTokenRepository",
             ]),
         .library(
             name: "InfrastructureImpl",
@@ -20,7 +21,8 @@ let package = Package(
                 "UsersRepositoryImpl",
                 "NetworkClientImpl",
                 "PhoneNumberServiceImpl",
-                "PositionsRepositoryImpl"
+                "PositionsRepositoryImpl",
+                "AuthenticationTokenRepositoryImpl"
             ]),
     ],
     dependencies: [
@@ -56,6 +58,7 @@ let package = Package(
             name: "NetworkClientImpl",
             dependencies: [
                 "NetworkClient",
+                "AuthenticationTokenRepository",
                 .product(name: "Utils", package: "Utils"),
             ]
         ),
@@ -87,6 +90,15 @@ let package = Package(
                 "NetworkClient",
                 .product(name: "Core", package: "Core"),
                 .product(name: "Utils", package: "Utils"),
+            ]
+        ),
+        .target(
+            name: "AuthenticationTokenRepository"
+        ),
+        .target(
+            name: "AuthenticationTokenRepositoryImpl",
+            dependencies: [
+                "AuthenticationTokenRepository"
             ]
         ),
     ]

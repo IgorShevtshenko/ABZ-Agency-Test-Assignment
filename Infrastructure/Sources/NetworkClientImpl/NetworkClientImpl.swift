@@ -12,15 +12,18 @@ public struct NetworkClientImpl: NetworkClient {
     private let session: URLSession
     private let requestSerializer: RequestSerializer
     private let responseSerializer: ResponseSerializer
+    private let endpointConfiguration: EndpointConfiguration
     
     public init(
         session: URLSession,
         requestSerializer: RequestSerializer,
-        responseSerializer: ResponseSerializer
+        responseSerializer: ResponseSerializer,
+        endpointConfiguration: EndpointConfiguration
     ) {
         self.session = session
         self.requestSerializer = requestSerializer
         self.responseSerializer = responseSerializer
+        self.endpointConfiguration = endpointConfiguration
     }
     
     public func execute<RequestBody, ResponseBody>(
@@ -63,7 +66,7 @@ private extension NetworkClientImpl {
     ) -> AnyPublisher<URLRequest, Error> {
         Deferred {
             try requestSerializer.configureContentType(
-                on: configureRequest(
+                on: endpointConfiguration.configureRequest(
                     url: url,
                     method: method,
                     body: body.map(requestSerializer.encode)
@@ -81,11 +84,7 @@ private extension URLResponse {
             fatalError("Could not downcast response")
         }
         guard (200...299).contains(response.statusCode) else {
-            print("NetworkClient received negative statusCode: \(response)")
-            guard let errorBody = try? JSONDecoder().decode(ErrorResponse.self, from: data) else {
-                throw NetworkClientError.invalidStatusCode(response.statusCode)
-            }
-            throw NetworkClientError.externalError(errorBody)
+            throw NetworkClientError.externalError(response.statusCode)
         }
         return data
     }
@@ -100,5 +99,18 @@ private extension Error {
         } else {
             return self
         }
+    }
+}
+
+extension NetworkClientImpl {
+    
+    func prepareURL(
+        path: String,
+        queryItems: [URLQueryItem]
+    ) throws -> URL {
+        guard let url = endpointConfiguration.url(applying: path, queryItems: queryItems) else {
+            throw NetworkClientError.failedToGenerateURL(path)
+        }
+        return url
     }
 }

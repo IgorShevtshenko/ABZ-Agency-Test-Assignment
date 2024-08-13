@@ -3,7 +3,6 @@ import NetworkClient
 
 public struct MultipartFormDataRequestSerializer: RequestSerializer {
 
-    private let boundary = "Boundary"
     private let encoder: MultipartFormDataEncoder
 
     public init(encoder: MultipartFormDataEncoder) {
@@ -17,7 +16,7 @@ public struct MultipartFormDataRequestSerializer: RequestSerializer {
     public func configureContentType(on urlRequest: URLRequest) -> URLRequest {
         var request = urlRequest
         request.setValue(
-            "multipart/form-data; boundary=\(boundary)",
+            "multipart/form-data; boundary=Boundary",
             forHTTPHeaderField: "Content-Type"
         )
         return request
