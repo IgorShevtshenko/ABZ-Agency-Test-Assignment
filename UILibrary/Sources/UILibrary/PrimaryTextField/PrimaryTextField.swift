@@ -41,7 +41,7 @@ public struct PrimaryTextField: View {
                 .modifier(
                     TextFieldPlaceholderModifier(
                         placeholder: textFieldConfiguration.placeholder,
-                        foregroundColor: color,
+                        foregroundColor: placeholderColor,
                         isActivePlaceholder: isPlaceholderActive
                     )
                 )
@@ -49,7 +49,7 @@ public struct PrimaryTextField: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
-                        .stroke(color, lineWidth: isFocused && !isErrorActive ? 2 : 1)
+                        .stroke(borderColor, lineWidth: isFocused && !isErrorActive ? 2 : 1)
                 )
             if let subtext = textFieldConfiguration.subtext {
                 Text(subtext)
@@ -109,11 +109,18 @@ public struct PrimaryTextField: View {
 
 private extension PrimaryTextField {
     
-    var color: Color {
+    var borderColor: Color {
         guard !isErrorActive else {
             return .negative
         }
         return isFocused ? .secondaryColor : .inactiveTextField
+    }
+    
+    var placeholderColor: Color {
+        guard !isErrorActive else {
+            return .negative
+        }
+        return isFocused ? .secondaryColor : .disabledLabel
     }
     
     var isPlaceholderActive: Bool {

@@ -50,14 +50,32 @@ public final class UsersListViewModel: ViewModel<UsersListState, UsersListAction
     public override func send(_ action: Action) {
         switch action {
         case .fetchUsers:
-            fetchUsers()
+            let fetchUsers = getUsers.fetchUsers()
+                .share()
+            fetchUsers
+                .setOutputType(to: UsersListEvent.self)
                 .append(
                     getUsers.users
                         .map { [phoneNumberService] users in
                             users.map { User(from: $0, phoneNumberService: phoneNumberService) }
                         }
                         .map(UsersListEvent.didFetchUsers)
+                        .setFailureType(to: GetUsersError.self)
                 )
+                .sink(receiveValue: events.send)
+                .store(in: &cancellables)
+            
+            fetchUsers
+                .setOutputType(to: UsersListEvent.self)
+                .catch { error in
+                    switch error {
+                    case .noInternetConnection:
+                        return Just(UsersListEvent.didReceiveNoConnectionError)
+                            .eraseToAnyPublisher()
+                    case .general:
+                        return Empty().eraseToAnyPublisher()
+                    }
+                }
                 .sink(receiveValue: events.send)
                 .store(in: &cancellables)
         case .loadMore:
@@ -65,7 +83,7 @@ public final class UsersListViewModel: ViewModel<UsersListState, UsersListAction
                 .setOutputType(to: UsersListEvent.self)
                 .catch { error in
                     switch error {
-                    case .noInternetConection:
+                    case .noInternetConnection:
                         return Just(UsersListEvent.didReceiveNoConnectionError)
                             .eraseToAnyPublisher()
                     case .general:
@@ -75,21 +93,6 @@ public final class UsersListViewModel: ViewModel<UsersListState, UsersListAction
                 .sink(receiveValue: events.send)
                 .store(in: &cancellables)
         }
-    }
-    
-    private func fetchUsers() -> ProtectedPublisher<UsersListEvent> {
-        getUsers.fetchUsers()
-            .setOutputType(to: UsersListEvent.self)
-            .catch { error in
-                switch error {
-                case .noInternetConection:
-                    return Just(UsersListEvent.didReceiveNoConnectionError)
-                        .eraseToAnyPublisher()
-                case .general:
-                    return Empty().eraseToAnyPublisher()
-                }
-            }
-            .eraseToAnyPublisher()
     }
 }
 

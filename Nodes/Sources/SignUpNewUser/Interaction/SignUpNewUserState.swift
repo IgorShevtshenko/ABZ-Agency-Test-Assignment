@@ -2,10 +2,14 @@ import Domain
 import Foundation
 import SignUpFormValidator
 
-public enum SignUpresult {
+public enum SignUpresult: Identifiable {
     case success
     case userAlreadyRegistered
     case noInternetConnection
+    
+    public var id: Self {
+        self
+    }
 }
 
 public struct SignUpNewUserState {

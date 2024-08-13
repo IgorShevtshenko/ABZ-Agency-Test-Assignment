@@ -49,6 +49,7 @@ public struct UsersList: View {
             }
         }
         .primaryBackground()
+        .primaryNavBar(title: "Working with GET request")
         .animation(.default, value: viewModel.state.state)
         .transition(.opacity)
     }
