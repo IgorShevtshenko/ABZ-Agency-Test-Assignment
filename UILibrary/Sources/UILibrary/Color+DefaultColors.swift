@@ -3,6 +3,8 @@ import SwiftUI
 public extension Color {
     static let primaryColor = Color(UIColor.hex("#F4E041"))
     static let secondaryColor = Color(UIColor.hex("#00BDD3"))
+    static let secondaryButtonBackground = Color(UIColor.hex("#00BDD3")).opacity(0.1)
+    static let secondaryDark = Color(UIColor.hex("#009BBD"))
     static let backgroundColor = Color(UIColor.hex("#FFFFFF"))
     static let primaryLabel = Color(UIColor.hex("#000000")).opacity(0.87)
     static let secondaryLabel = Color(UIColor.hex("#000000")).opacity(0.6)
