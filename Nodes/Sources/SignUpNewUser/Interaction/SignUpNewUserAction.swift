@@ -9,7 +9,11 @@ public enum SignUpNewUserAction {
     
     case changePosition(Position?)
     
-    case changePhoto(Data)
+    case changePhoto(Data?)
     
     case fetchPositions
+    
+    case signUp
+    
+    case cancelResultView
 }

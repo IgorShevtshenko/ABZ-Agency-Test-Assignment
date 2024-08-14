@@ -9,7 +9,9 @@ struct KeyboardConfiguration {
 struct TextFieldConfiguration {
     var subtext: String?
     var placeholder = ""
+    var isEnabled: Bool = true
     var validateInput: (String) -> Void = { _ in }
+    var trailingConent: () -> AnyView = { AnyView(EmptyView()) }
 }
 
 public struct PrimaryTextField: View {
@@ -31,26 +33,31 @@ public struct PrimaryTextField: View {
     
     public var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            TextField("", text: $text.removeDuplicates())
-                .focused($isFocused)
-                .modifier(
-                    TextFieldConfigurationViewModifier(keyboardConfiguration: keyboardConfiguration)
-                )
-                .padding(.top, isPlaceholderActive ? 22 : 16)
-                .padding(.bottom, isPlaceholderActive ? 8 : 16)
-                .modifier(
-                    TextFieldPlaceholderModifier(
-                        placeholder: textFieldConfiguration.placeholder,
-                        foregroundColor: placeholderColor,
-                        isActivePlaceholder: isPlaceholderActive
+            HStack(alignment: .center, spacing: 0) {
+                TextField("", text: $text.removeDuplicates())
+                    .disabled(!textFieldConfiguration.isEnabled)
+                    .focused($isFocused)
+                    .modifier(
+                        TextFieldConfigurationViewModifier(keyboardConfiguration: keyboardConfiguration)
                     )
-                )
-                .padding(.leading, 16)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 4)
-                        .stroke(borderColor, lineWidth: isFocused && !isErrorActive ? 2 : 1)
-                )
+                    .padding(.top, isPlaceholderActive ? 22 : 16)
+                    .padding(.bottom, isPlaceholderActive ? 8 : 16)
+                    .modifier(
+                        TextFieldPlaceholderModifier(
+                            placeholder: textFieldConfiguration.placeholder,
+                            foregroundColor: placeholderColor,
+                            isActivePlaceholder: isPlaceholderActive
+                        )
+                    )
+                textFieldConfiguration.trailingConent()
+            }
+            .padding(.leading, 16)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .overlay(
+                RoundedRectangle(cornerRadius: 4)
+                    .stroke(borderColor, lineWidth: isFocused && !isErrorActive ? 2 : 1)
+            )
+
             if let subtext = textFieldConfiguration.subtext {
                 Text(subtext)
                     .font(.body4)
@@ -96,9 +103,18 @@ public struct PrimaryTextField: View {
         }
     }
     
-    public func updateValidateInput(content: @escaping (String) -> Void) -> Self {
-        updateView { $0.textFieldConfiguration.validateInput = content }
+    public func updateValidateInput(input: @escaping (String) -> Void) -> Self {
+        updateView { $0.textFieldConfiguration.validateInput = input }
     }
+    
+    public func updateTrailingContent(@ViewBuilder content: @escaping () -> some View) -> Self {
+        updateView { $0.textFieldConfiguration.trailingConent = { AnyView(content()) }}
+    }
+    
+    public func updateIsEnabled(_ isEnabled: Bool) -> Self {
+        updateView { $0.textFieldConfiguration.isEnabled = isEnabled }
+    }
+    
     
     private func updateView(_ update: (inout Self) -> Void) -> Self {
         var view = self

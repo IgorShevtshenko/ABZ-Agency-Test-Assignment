@@ -18,7 +18,8 @@ struct UsersListComponent {
             client: NetworkClientImpl(
                 session: .shared,
             requestSerializer: JSONRequestSerializer(),
-            responseSerializer: JSONResponseSerializer()
+                responseSerializer: JSONResponseSerializer(),
+                endpointConfiguration: EndpointConfigurationImpl()
             )
         )
         self.phoneNumberService = PhoneNumberServiceImpl()

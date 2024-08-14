@@ -54,10 +54,6 @@ public class MultipartFormDataEncoderImpl: MultipartFormDataEncoder {
                     using: boundary
                 )
             )
-        } else if let arr = value as? [Any] {
-            for value in arr {
-                append(on: httpBody, key: key, value: value)
-            }
         }
     }
 

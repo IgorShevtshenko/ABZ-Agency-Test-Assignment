@@ -26,7 +26,7 @@ public struct GetUsersImpl: GetUsers {
     }
     
     public func fetchUsers() -> Completable<GetUsersError> {
-        usersRepository.fetchMoreUsers()
+        usersRepository.fetchUsers()
             .mapError(\.asGetUsersError)
             .eraseToAnyPublisher()
     }

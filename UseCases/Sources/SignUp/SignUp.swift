@@ -21,6 +21,7 @@ public struct SignUpForm {
 public enum SignUpError: Error {
     case noInternetConnection
     case general
+    case userAlreadyExists
 }
 
 public protocol SignUp {

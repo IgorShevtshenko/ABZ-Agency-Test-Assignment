@@ -46,13 +46,21 @@ public final class SignUpNewUserViewModel: ViewModel<SignUpNewUserState, SignUpN
             state.fieldErrors[field] = error
         case .didChangeAvailablePositions(let positions):
             state.positions = positions
-            state.signupResult = nil
+            state.isNoInternetConnection = false
         case .didChangePosition(let position):
             state.form.position = position
         case .didChangePhoto(let photo):
             state.form.photo = photo
         case .didRecevieNoInternetConnection:
             state.isNoInternetConnection = true
+        case .didFinishSignUp:
+            state.signupResult = .success
+        case .didRecieveErrorUserAlreadyExists:
+            state.signupResult = .userAlreadyRegistered
+        case .didRecieveNoInternetConnectionForSignUp:
+            state.signupResult = .noInternetConnection
+        case .didCancelResultView:
+            state.signupResult = nil
         }
         return state
     }
@@ -97,6 +105,28 @@ public final class SignUpNewUserViewModel: ViewModel<SignUpNewUserState, SignUpN
                 }
                 .sink(receiveValue: events.send)
                 .store(in: &cancellables)
+        case .signUp:
+            if let completedForm = state.completedForm {
+                signUp(using: completedForm)
+                    .setOutputType(to: SignUpNewUserEvent.self)
+                    .append(.didFinishSignUp)
+                    .catch { error in
+                        switch error {
+                        case .noInternetConnection:
+                            return Just(SignUpNewUserEvent.didRecieveNoInternetConnectionForSignUp)
+                                .eraseToAnyPublisher()
+                        case .userAlreadyExists:
+                            return Just(SignUpNewUserEvent.didRecieveErrorUserAlreadyExists)
+                                .eraseToAnyPublisher()
+                        case .general:
+                            return Empty().eraseToAnyPublisher()
+                        }
+                    }
+                    .sink(receiveValue: events.send)
+                    .store(in: &cancellables)
+            }
+        case .cancelResultView:
+            events.send(.didCancelResultView)
         }
     }
 }

@@ -11,7 +11,12 @@ enum SignUpNewUserEvent {
     case didChangeAvailablePositions([Position])
     case didChangePosition(Position?)
     
-    case didChangePhoto(Data)
+    case didChangePhoto(Data?)
     
     case didRecevieNoInternetConnection
+    
+    case didFinishSignUp
+    case didRecieveErrorUserAlreadyExists
+    case didRecieveNoInternetConnectionForSignUp
+    case didCancelResultView
 }
