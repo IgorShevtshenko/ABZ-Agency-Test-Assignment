@@ -3,15 +3,17 @@ import Domain
 import Utils
 import NetworkClient
 import Combine
+import UsersRepository
 import Foundation
-import AuthenticationTokenRepository
 
 public struct SignUpImpl: SignUp {
     
     private let client: NetworkClient
+    private let usersRepository: UsersRepository
     
-    public init(client: NetworkClient) {
+    public init(client: NetworkClient, usersRepository: UsersRepository) {
         self.client = client
+        self.usersRepository = usersRepository
     }
     
     public func callAsFunction(using form: SignUpForm) -> Completable<SignUpError> {
@@ -26,6 +28,10 @@ public struct SignUpImpl: SignUp {
             path: "users"
         )
         .mapError(\.asSignUpError)
+        .append(
+            usersRepository.fetchUsers()
+                .mapError(\.asSignUpError)
+        )
         .eraseToAnyPublisher()
     }
 }
@@ -50,6 +56,18 @@ private extension Error {
                 .invalidStatusCode,
                 .externalError,
                 .none:
+                .general
+        }
+    }
+}
+
+private extension UsersRepositoryError {
+    
+    var asSignUpError: SignUpError {
+        switch self {
+        case .noInternetConnection:
+                .noInternetConnection
+        case .general:
                 .general
         }
     }
