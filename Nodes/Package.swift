@@ -11,6 +11,7 @@ let package = Package(
             targets: [
                 "UsersList",
                 "SignUpNewUser",
+                "CoreNode",
             ]
         ),
     ],
@@ -40,6 +41,13 @@ let package = Package(
                 .product(name: "Infrastructure", package: "Infrastructure"),
                 .product(name: "UILibrary", package: "UILibrary"),
                 .product(name: "Utils", package: "Utils")
+            ]
+        ),
+        .target(
+            name: "CoreNode",
+            dependencies: [
+                .product(name: "UILibrary", package: "UILibrary"),
+                .product(name: "Core", package: "Core"),
             ]
         ),
     ]

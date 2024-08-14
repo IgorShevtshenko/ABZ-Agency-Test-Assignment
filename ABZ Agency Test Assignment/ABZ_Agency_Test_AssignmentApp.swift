@@ -10,8 +10,7 @@ struct ABZ_Agency_Test_AssignmentApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            UsersListComponent().makeUsersList()
-            SignUpNewUserComponent().makeSignUpNewUser()
+            RootComponent().makeRoot()
         }
     }
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CF3AA20D2C5A56EC00ED2D2D /* ABZ_Agency_Test_AssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AA20C2C5A56EC00ED2D2D /* ABZ_Agency_Test_AssignmentApp.swift */; };
+		CF56FAE22C6D4BEC00A6490B /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56FAE12C6D4BEC00A6490B /* Component.swift */; };
+		CF56FAE42C6D4C5200A6490B /* RootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56FAE32C6D4C5200A6490B /* RootComponent.swift */; };
 		CFABCF362C68EA9F0016E7BE /* Nodes in Frameworks */ = {isa = PBXBuildFile; productRef = CFABCF352C68EA9F0016E7BE /* Nodes */; };
 		CFADC6D92C69598300926E27 /* SignUpNewUserComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADC6D82C69598300926E27 /* SignUpNewUserComponent.swift */; };
 		CFEFF8CD2C5A7D4400E6960E /* UsersListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEFF8CC2C5A7D4400E6960E /* UsersListComponent.swift */; };
@@ -26,12 +28,13 @@
 		CF3AA21A2C5A579600ED2D2D /* Infrastructure */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Infrastructure; sourceTree = "<group>"; };
 		CF3AA21B2C5A59B500ED2D2D /* Utils */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Utils; sourceTree = "<group>"; };
 		CF3AA21C2C5A5B2B00ED2D2D /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
+		CF56FAE12C6D4BEC00A6490B /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		CF56FAE32C6D4C5200A6490B /* RootComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootComponent.swift; sourceTree = "<group>"; };
 		CFABCF342C68E9A30016E7BE /* Nodes */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Nodes; sourceTree = "<group>"; };
 		CFADC6D82C69598300926E27 /* SignUpNewUserComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNewUserComponent.swift; sourceTree = "<group>"; };
 		CFEFF8C52C5A77A900E6960E /* UseCases */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UseCases; sourceTree = "<group>"; };
 		CFEFF8CC2C5A7D4400E6960E /* UsersListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListComponent.swift; sourceTree = "<group>"; };
 		CFEFF8E72C5A915300E6960E /* UILibrary */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UILibrary; sourceTree = "<group>"; };
-		CFEFF8EF2C5A991700E6960E /* ABZ-Agency-Test-Assignment-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ABZ-Agency-Test-Assignment-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +82,6 @@
 		CF3AA20B2C5A56EC00ED2D2D /* ABZ Agency Test Assignment */ = {
 			isa = PBXGroup;
 			children = (
-				CFEFF8EF2C5A991700E6960E /* ABZ-Agency-Test-Assignment-Info.plist */,
 				CFEFF8CB2C5A7D2A00E6960E /* Components */,
 				CF3AA20C2C5A56EC00ED2D2D /* ABZ_Agency_Test_AssignmentApp.swift */,
 			);
@@ -91,6 +93,8 @@
 			children = (
 				CFEFF8CC2C5A7D4400E6960E /* UsersListComponent.swift */,
 				CFADC6D82C69598300926E27 /* SignUpNewUserComponent.swift */,
+				CF56FAE12C6D4BEC00A6490B /* Component.swift */,
+				CF56FAE32C6D4C5200A6490B /* RootComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -181,7 +185,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFADC6D92C69598300926E27 /* SignUpNewUserComponent.swift in Sources */,
+				CF56FAE22C6D4BEC00A6490B /* Component.swift in Sources */,
 				CFEFF8CD2C5A7D4400E6960E /* UsersListComponent.swift in Sources */,
+				CF56FAE42C6D4C5200A6490B /* RootComponent.swift in Sources */,
 				CF3AA20D2C5A56EC00ED2D2D /* ABZ_Agency_Test_AssignmentApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,7 +324,7 @@
 				DEVELOPMENT_TEAM = WQ3WKC3CH6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ABZ-Agency-Test-Assignment-Info.plist";
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Application want to access your camera";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Application want to access you photo library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -349,7 +355,7 @@
 				DEVELOPMENT_TEAM = WQ3WKC3CH6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "ABZ-Agency-Test-Assignment-Info.plist";
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Application want to access your camera";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Application want to access you photo library";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

@@ -11,4 +11,5 @@ public extension Image {
     static let failedSignUp = Image("failed_sign_up", bundle: .module)
     static let successfulSignUp = Image("successful_sign_up", bundle: .module)
     static let closeIcon = Image("close_icon", bundle: .module)
+    static let signUpTab = Image("sign_up_tab", bundle: .module)
 }

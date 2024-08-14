@@ -8,27 +8,14 @@ import PhoneNumberService
 import PhoneNumberServiceImpl
 import UsersList
 
-struct UsersListComponent {
+struct UsersListComponent: Component {
     
-    private let usersRepository: UsersRepository
-    private let phoneNumberService: PhoneNumberService
-    
-    init() {
-        self.usersRepository = UsersRepositoryImpl(
-            client: NetworkClientImpl(
-                session: .shared,
-            requestSerializer: JSONRequestSerializer(),
-                responseSerializer: JSONResponseSerializer(),
-                endpointConfiguration: EndpointConfigurationImpl()
-            )
-        )
-        self.phoneNumberService = PhoneNumberServiceImpl()
-    }
+    let parent: RootComponent
     
     func makeUsersList() -> some View {
         let viewModel = UsersListViewModel(
-            getUsers: GetUsersImpl(usersRepository: usersRepository),
-            phoneNumberService: phoneNumberService
+            getUsers: GetUsersImpl(usersRepository: parent.usersRepository),
+            phoneNumberService: parent.phoneNumberService
         )
         return UsersList(viewModel: viewModel)
     }

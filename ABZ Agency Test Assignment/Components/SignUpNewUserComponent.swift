@@ -11,14 +11,16 @@ import PhoneNumberServiceImpl
 import AuthenticationTokenRepository
 import AuthenticationTokenRepositoryImpl
 
-struct SignUpNewUserComponent {
+struct SignUpNewUserComponent: Component {
     
+    let parent: RootComponent
     private let positionsRepository: PositionsRepository
     private let authenticationTokenRepository: AuthenticationTokenRepository
     
     private let networkClient: NetworkClient
     
-    init() {
+    init(parent: RootComponent) {
+        self.parent = parent
         authenticationTokenRepository = AuthenticationTokenRepositoryImpl()
         networkClient = NetworkClientImpl(
             session: .shared,
@@ -54,7 +56,8 @@ struct SignUpNewUserComponent {
         )
         let viewModel = SignUpNewUserViewModel(
             signUp: SignUpImpl(
-                client: signUpNetworkClient
+                client: signUpNetworkClient, 
+                usersRepository: parent.usersRepository
             ),
             signUpFormValidator: SignUpFormValidatorImpl(
                 phoneNumberService: PhoneNumberServiceImpl()
