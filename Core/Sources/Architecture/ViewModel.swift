@@ -18,7 +18,6 @@ open class ViewModel<State, Action>: ObservableObject {
         state = initial
         dataEvents
             .scan(initial, reducer)
-            .prepend(initial)
             .assign(to: &$state)
     }
     

@@ -10,6 +10,7 @@
 		CF3AA20D2C5A56EC00ED2D2D /* ABZ_Agency_Test_AssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3AA20C2C5A56EC00ED2D2D /* ABZ_Agency_Test_AssignmentApp.swift */; };
 		CF56FAE22C6D4BEC00A6490B /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56FAE12C6D4BEC00A6490B /* Component.swift */; };
 		CF56FAE42C6D4C5200A6490B /* RootComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF56FAE32C6D4C5200A6490B /* RootComponent.swift */; };
+		CF5C0FFE2C6E7BBC0038B3BF /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = CF5C0FFD2C6E7BBC0038B3BF /* Readme.md */; };
 		CFABCF362C68EA9F0016E7BE /* Nodes in Frameworks */ = {isa = PBXBuildFile; productRef = CFABCF352C68EA9F0016E7BE /* Nodes */; };
 		CFADC6D92C69598300926E27 /* SignUpNewUserComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADC6D82C69598300926E27 /* SignUpNewUserComponent.swift */; };
 		CFEFF8CD2C5A7D4400E6960E /* UsersListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEFF8CC2C5A7D4400E6960E /* UsersListComponent.swift */; };
@@ -30,6 +31,7 @@
 		CF3AA21C2C5A5B2B00ED2D2D /* Core */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Core; sourceTree = "<group>"; };
 		CF56FAE12C6D4BEC00A6490B /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
 		CF56FAE32C6D4C5200A6490B /* RootComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootComponent.swift; sourceTree = "<group>"; };
+		CF5C0FFD2C6E7BBC0038B3BF /* Readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		CFABCF342C68E9A30016E7BE /* Nodes */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Nodes; sourceTree = "<group>"; };
 		CFADC6D82C69598300926E27 /* SignUpNewUserComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpNewUserComponent.swift; sourceTree = "<group>"; };
 		CFEFF8C52C5A77A900E6960E /* UseCases */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = UseCases; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		CF3AA2002C5A56EC00ED2D2D = {
 			isa = PBXGroup;
 			children = (
+				CF5C0FFD2C6E7BBC0038B3BF /* Readme.md */,
 				CFABCF342C68E9A30016E7BE /* Nodes */,
 				CFEFF8E72C5A915300E6960E /* UILibrary */,
 				CFEFF8C52C5A77A900E6960E /* UseCases */,
@@ -174,6 +177,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF5C0FFE2C6E7BBC0038B3BF /* Readme.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +336,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,6 +368,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -14,10 +14,9 @@ import AuthenticationTokenRepositoryImpl
 struct SignUpNewUserComponent: Component {
     
     let parent: RootComponent
+    private let networkClient: NetworkClient
     private let positionsRepository: PositionsRepository
     private let authenticationTokenRepository: AuthenticationTokenRepository
-    
-    private let networkClient: NetworkClient
     
     init(parent: RootComponent) {
         self.parent = parent
